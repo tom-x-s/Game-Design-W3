@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
+    public Text loseText;
 
     private Rigidbody rb;
     private int count;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
         count = 0;
         SetCountText();
         winText.text = "";
+        loseText.text = "";
     }
 
     void FixedUpdate()
@@ -39,6 +41,12 @@ public class PlayerController : MonoBehaviour {
             count++;
             SetCountText();
         }
+
+         if (other.gameObject.CompareTag("Enemy"))
+        {
+            rb.gameObject.SetActive(false);
+            loseText.text = "You lose!";
+        } 
     }
 
     void SetCountText()
